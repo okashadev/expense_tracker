@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Monthly Expense Report</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#b33d0f",
+            "background-light": "#f8f6f6",
+            "background-dark": "#221510",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+
+<body class="font-display bg-[#EFE4D2] dark:bg-background-dark">
+  <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="flex-grow">
+      <div class="flex flex-1 justify-center py-8 px-4 sm:px-6 lg:px-8">
+        <main class="w-full max-w-5xl bg-white dark:bg-black/20 rounded-xl shadow-sm p-6 md:p-10 lg:p-12">
+          <!-- PageHeading -->
+          <div
+            class="flex flex-wrap items-start justify-between gap-4 border-b border-gray-200 dark:border-white/10 pb-6 mb-8">
+            <div class="flex flex-col gap-2">
+              <h1 class="text-[#131D4F] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-tight">
+                Monthly Expense Report – May 2025</h1>
+              <p class="text-[#131D4F]/70 dark:text-white/70 text-base font-normal leading-normal">A summary of your
+                income and spending for the selected period.</p>
+            </div>
+            <button
+              class="flex items-center justify-center gap-2 min-w-[84px] cursor-pointer rounded-lg h-10 px-4 bg-[#954C2E] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#7d3f24] transition-colors">
+              <span class="material-symbols-outlined !text-xl">download</span>
+              <span class="truncate">Download PDF</span>
+            </button>
+          </div>
+          <!-- Stats -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="flex flex-col gap-1">
+              <p class="text-[#131D4F]/80 dark:text-white/80 text-base font-medium leading-normal">Total Spent</p>
+              <p class="text-[#131D4F] dark:text-white text-3xl font-bold leading-tight">$2,450.78</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-[#131D4F]/80 dark:text-white/80 text-base font-medium leading-normal">Total Transactions
+              </p>
+              <p class="text-[#131D4F] dark:text-white text-3xl font-bold leading-tight">128</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-[#131D4F]/80 dark:text-white/80 text-base font-medium leading-normal">Top Spending Category
+              </p>
+              <p class="text-[#131D4F] dark:text-white text-3xl font-bold leading-tight">Groceries</p>
+            </div>
+          </div>
+          <!-- Charts Section -->
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
+            <!-- Line Chart -->
+            <div class="lg:col-span-3">
+              <h2 class="text-[#131D4F] dark:text-white text-xl font-bold leading-tight tracking-tight mb-4">Monthly
+                Trend</h2>
+              <div
+                class="w-full h-72 rounded-lg border border-gray-200 dark:border-white/10 p-4 flex items-end justify-center bg-gray-50 dark:bg-black/20">
+                <img
+                  alt="A bar chart showing monthly spending trends over the last 12 months, with the current month highlighted in brown."
+                  class="w-full h-full object-contain"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz01eoUdzZH41RcOBqFXfedsYbhZLzlMWn4LGBu8V4BlXRzK3oHgi37FaETBGRRrTxMZcJY3Tp299AsM0adPfRphMuDmc8EXjRGM7VN93uMYkB4sVEwszE-B17uaah2uc72Jx6Xsn8aFPdxGoO2rZuVrqd26ohCygdmU4id18kI1CEWJ_tvquA2rZTk-5E4P6zi_-CTyg_hBNoV3ZaJDT03nHC0By0ISlOJ7kM3gZZJ5kEpvjVnrNlgC1OJ6523ayyoohSaaZEPA" />
+              </div>
+            </div>
+            <!-- Pie Chart -->
+            <div class="lg:col-span-2">
+              <h2 class="text-[#131D4F] dark:text-white text-xl font-bold leading-tight tracking-tight mb-4">Category
+                Distribution</h2>
+              <div
+                class="w-full h-72 rounded-lg border border-gray-200 dark:border-white/10 p-4 flex items-center justify-center bg-gray-50 dark:bg-black/20">
+                <img
+                  alt="A pie chart showing spending distribution across different categories like groceries, dining out, and transportation."
+                  class="w-full h-full object-contain"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7ntdK0p3J_HpeZTqa1S-E7MaeVvWTYZ8N4egMCciiqW8SGFFxKxqhY6xb7TGSkqu7vObAi_qRqGK1bdgW4Bivj7Tes0kgv53a0qB04knfK73KBvAGl8v6q1H3QjvoF8g12paPI3OtyRk3F6Ph_j-k7An3p2NiX_YP3uT7TR22HtODgy-5gO-GiaStIFzO0AW7iNVT38qHXqsPkX2xurl2ngBfBBuu3qtn1HfA5lZDHEu047wtPFHbHhQu3a_E-z3HsLr3G0Ac5w" />
+              </div>
+            </div>
+          </div>
+          <!-- SectionHeader -->
+          <h2 class="text-[#131D4F] dark:text-white text-xl font-bold leading-tight tracking-tight mb-4">Category
+            Breakdown</h2>
+          <!-- Table -->
+          <div class="mb-12 @container">
+            <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-white/10">
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead>
+                    <tr class="bg-gray-50 dark:bg-black/20">
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 w-2/5 text-sm font-semibold tracking-wider">
+                        Category</th>
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 w-1/5 text-sm font-semibold tracking-wider">
+                        Amount</th>
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 w-1/5 text-sm font-semibold tracking-wider">
+                        % of Total</th>
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 w-1/5 text-sm font-semibold tracking-wider">
+                        Trend</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 dark:divide-white/10">
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Groceries</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">$650.21</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">26.5%</td>
+                      <td class="px-6 py-4">
+                        <span class="material-symbols-outlined text-[#954C2E]">trending_up</span>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Dining Out</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">$410.80</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">16.7%</td>
+                      <td class="px-6 py-4">
+                        <span class="material-symbols-outlined text-[#954C2E]">trending_flat</span>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Transportation</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">$320.00</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">13.1%</td>
+                      <td class="px-6 py-4">
+                        <span class="material-symbols-outlined text-[#954C2E]">trending_down</span>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Utilities</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">$215.50</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">8.8%</td>
+                      <td class="px-6 py-4">
+                        <span class="material-symbols-outlined text-[#954C2E]">trending_flat</span>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Shopping</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">$180.45</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">7.4%</td>
+                      <td class="px-6 py-4">
+                        <span class="material-symbols-outlined text-[#954C2E]">trending_up</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Detailed Transactions List -->
+          <h2 class="text-[#131D4F] dark:text-white text-xl font-bold leading-tight tracking-tight mb-4">Detailed
+            Transactions</h2>
+          <div class="mb-12 @container">
+            <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-white/10">
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead>
+                    <tr class="bg-gray-50 dark:bg-black/20">
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 text-sm font-semibold tracking-wider">
+                        Date</th>
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 text-sm font-semibold tracking-wider">
+                        Description</th>
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 text-sm font-semibold tracking-wider">
+                        Category</th>
+                      <th
+                        class="px-6 py-3 text-left text-[#131D4F] dark:text-white/90 text-sm font-semibold tracking-wider">
+                        Payment</th>
+                      <th
+                        class="px-6 py-3 text-right text-[#131D4F] dark:text-white/90 text-sm font-semibold tracking-wider">
+                        Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 dark:divide-white/10">
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm whitespace-nowrap">May 28, 2025
+                      </td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Trader Joe's</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Groceries</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Visa **** 1234</td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium text-right">-$85.12</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm whitespace-nowrap">May 27, 2025
+                      </td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Shell Gas Station</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Transportation</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Amex **** 5678</td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium text-right">-$55.60</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm whitespace-nowrap">May 26, 2025
+                      </td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">The Corner Bistro</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Dining Out</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Visa **** 1234</td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium text-right">-$42.50</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 dark:hover:bg-black/10">
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm whitespace-nowrap">May 25, 2025
+                      </td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium">Amazon.com</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Shopping</td>
+                      <td class="px-6 py-4 text-[#131D4F]/80 dark:text-white/80 text-sm">Mastercard **** 4321</td>
+                      <td class="px-6 py-4 text-[#131D4F] dark:text-white text-sm font-medium text-right">-$112.99</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Monthly Insights -->
+          <div>
+            <h2 class="text-[#131D4F] dark:text-white text-xl font-bold leading-tight tracking-tight mb-4">Monthly
+              Insights</h2>
+            <div
+              class="space-y-4 text-base text-[#131D4F]/90 dark:text-white/90 leading-relaxed border border-gray-200 dark:border-white/10 rounded-lg p-6 bg-gray-50 dark:bg-black/20">
+              <p>This month, your spending in the <strong
+                  class="font-semibold text-[#131D4F] dark:text-white">"Groceries"</strong> category was 15% higher than
+                your monthly average. This was the primary driver of your total expenses being slightly over budget.</p>
+              <p>On a positive note, your <strong
+                  class="font-semibold text-[#131D4F] dark:text-white">"Transportation"</strong> costs decreased by 10%,
+                likely due to fewer commutes. Consider reallocating these savings towards your financial goals.</p>
+              <p><strong class="font-semibold text-[#954C2E]">Tip:</strong> Review your grocery receipts for
+                non-essential items to identify potential savings for next month.</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 px-4">
+      <p class="text-sm text-[#131D4F]/60 dark:text-white/60">Report generated on June 1, 2025 by ExpenseTracker App.
+      </p>
+    </footer>
+  </div>
+</body>
+
+</html>
