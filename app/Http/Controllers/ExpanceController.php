@@ -13,10 +13,11 @@ use Illuminate\View\View;
 
 class ExpanceController extends Controller
 {
-    
+
     public function index() : View
     {
-        $expenses = Expance::with('category')->get();
+        $user_id = auth()->id();
+        $expenses = Expance::where('user_id', $user_id)->with('category')->get();
         // return $expenses;
         return view('expenses.list', compact('expenses'));
     }
@@ -74,6 +75,6 @@ class ExpanceController extends Controller
             return redirect()->route('expenses.index')->with('success', 'Expense deleted successfully.');
         } else {
             return redirect()->route('expenses.index')->with('error', 'Failed to delete expense. Please try again.');
-        }   
+        }
     }
 }

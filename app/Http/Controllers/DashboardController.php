@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Expance;
 use App\Models\MonthlyLimit;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -53,6 +53,34 @@ class DashboardController extends Controller
         // return $recentTransaction;
 
         return view('dashboard', compact('monthlyLimit', 'totalSpent', 'topSpendindCategory', 'recentTransaction'));
+    }
+
+    public function ajaxMonthlyExpenseChart(){
+        $userId = auth()->id();
+
+        $start = now()->startOfMonth()->subMonths(5);
+        $end   = now()->startOfMonth();
+
+        $result = [];
+
+        while ($start <= $end) {
+
+            $total = \App\Models\Expance::where('user_id', $userId)
+                ->whereYear('created_at', $start->year)
+                ->whereMonth('created_at', $start->month)
+                ->sum('amount');
+
+            $result[] = [
+                'month' => $start->format('M'),
+                'total' => $total,
+                'is_current' => $start->isSameMonth(now()),
+            ];
+
+            $start->addMonth();
+        }
+
+        return response()->json($result);
+
     }
 
 }

@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard',[DashboardController::class, 'dashboard'])
         ->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/ajax/chart/monthly_expenses', [DashboardController::class, 'ajaxMonthlyExpenseChart'])
+    ->name('ajax.chart.monthly_expenses');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

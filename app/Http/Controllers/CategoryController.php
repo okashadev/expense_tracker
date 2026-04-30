@@ -14,7 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::whereNull('user_id')
+                ->orWhere('user_id', auth()->id())
+                ->latest()
+                ->get();
+
         return view('categories.list', compact('category'));
     }
 
@@ -54,7 +58,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+
     }
 
     /**
@@ -62,7 +66,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+
     }
 
     /**
@@ -70,7 +74,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+
     }
 
     /**
@@ -78,8 +82,21 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $deleted = $category->delete();
-        if ($deleted) {
+       if (is_null($category->user_id)) {
+            return redirect()
+                ->route('categories.index')
+                ->with('error', 'Default categories cannot be deleted.');
+        }
+
+        if ($category->user_id !== auth()->id()) {
+            return redirect()
+                ->route('categories.index')
+                ->with('error', 'Unauthorized action.');
+        }
+
+        $category->delete();
+
+        if ($category) {
             return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
         } else {
             return redirect()->route('categories.index')->with('error', 'Failed to delete category. Please try again.');

@@ -13,9 +13,9 @@
     <h1 class="text-2xl font-extrabold max-sm:hidden text-[#254D70]">Hello, {{ Auth::user()->name }}!</h2>
     <h1 class="text-2xl font-extrabold sm:hidden text-[#254D70]">Expense Tracker</h2>
     <div class="flex items-center gap-6">
-        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 border-2 border-[#954C2E]"
+        <a href="{{ route('profile.edit') }}" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 border-2 border-[#954C2E]"
             data-alt="User avatar with a gradient background"
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDA39Dz_genPqdO4AANqVU4J70guqyTAwsvUjwLQm-716Tot3YrSDiguoh5pc-o8Dwl9PnbwxlHeNYaAA5sGZPn2TTKnQFknmkS_NfQgpHj-tQBMrZ-N4nF7WjxrHYVDnI1zT_XP99EtNtC82SxaZaB859MDcmRwX6Q-3FcC57094NNDEOTpvHnRCZTWmNevwqUOlp0HkCQcRnariNtxcRU6tZEolE54kuQK73QLilzLFLuPrqw0Y66LFW-poFkpMJDp3-NdL3A1A');">
-        </div>
+        </a>
     </div>
 </header>

@@ -48,15 +48,20 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 flex gap-2">
-                                <a href="#"
-                                    class="font-medium bg-[#954C2E] rounded-xl px-2 py-1 flex justify-center items-center text-white">
-                                    <span class="material-symbols-outlined text-lg">edit</span>
-                                </a>
-                                <button data-modal-target="popup-modal-{{ $data->id }}"
-                                    data-modal-toggle="popup-modal-{{ $data->id }}" type="button"
-                                    class="font-medium bg-red-600 rounded-xl px-2 py-1 flex justify-center items-center text-white">
-                                    <span class="material-symbols-outlined text-lg">delete</span>
-                                </button>
+                                @if ($data->user_id !== null)
+                                    <a href="#"
+                                        class="font-medium bg-[#954C2E] rounded-xl px-2 py-1 flex justify-center items-center text-white">
+                                        <span class="material-symbols-outlined text-lg">edit</span>
+                                    </a>
+                                    <button data-modal-target="popup-modal-{{ $data->id }}"
+                                        data-modal-toggle="popup-modal-{{ $data->id }}" type="button"
+                                        class="font-medium bg-red-600 rounded-xl px-2 py-1 flex justify-center items-center text-white">
+                                        <span class="material-symbols-outlined text-lg">delete</span>
+                                    </button>
+                                @else
+                                    <span class="text-sm text-gray-500 italic">Default category
+                                    </span>
+                                @endif
                             </td>
                         </tr>
                         <div id="popup-modal-{{ $data->id }}" tabindex="-1"

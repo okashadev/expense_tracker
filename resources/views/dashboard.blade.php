@@ -24,16 +24,30 @@
 
 
         </div>
-        <div class="grid grid-cols-3 gap-6">
-            <div
-                class="flex flex-col items-start justify-center px-5 py-6 rounded-xl shadow-lg bg-white h-80 col-span-2">
-                <p class="text-2xl text-gray-400">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
+        <div class="grid grid-cols-2 gap-6">
+            <div class=" bg-white rounded-2xl shadow-md p-6">
+
+                <!-- Header -->
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">
+                            Monthly Expense Overview
+                        </h2>
+                        <p class="text-sm text-gray-500">
+                            Visual representation of your spending.
+                        </p>
+                    </div>
+
+                    {{-- <a href="#" class="text-sm font-medium text-[#954C2E]">
+                        View Full Report
+                    </a> --}}
+                </div>
+
+                <!-- Chart -->
+                <div class="w-full">
+                    <canvas id="expenseChart" class="w-full"></canvas>
+                </div>
+
             </div>
             <div class="flex flex-col items-start px-5 py-6 rounded-xl shadow-lg bg-white col-span-1">
                 <h1 class="text-xl font-bold text-black">
@@ -59,5 +73,65 @@
             </div>
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            fetch("{{ route('ajax.chart.monthly_expenses') }}")
+                .then(res => res.json())
+                .then(data => {
+
+                    const labels = data.map(item => item.month);
+                    const amounts = data.map(item => item.total);
+                    const colors = data.map(item =>
+                        item.is_current ? '#8B4A2F' : '#E8DED9'
+                    );
+
+                    const ctx = document.getElementById('expenseChart');
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: amounts,
+                                backgroundColor: colors,
+                                borderRadius: 8,
+                                barThickness: 36,
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    border: {
+                                        display: false
+                                    }
+                                },
+                                y: {
+                                    display: false,
+                                    grid: {
+                                        display: false
+                                    },
+                                    border: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+        });
+    </script>
 
 </x-app-layout>
