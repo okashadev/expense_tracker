@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use \Throwable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExpensesCreateRequest;
+use App\Http\Requests\ExpenseUpdateRequest;
 use App\Models\Category;
 use App\Models\Expance;
 use Illuminate\Http\Request;
@@ -52,20 +53,32 @@ class ExpanceController extends Controller
         }
     }
 
-
-    public function show(Expance $expance)
-    {
-        //
-    }
-
     public function edit(Expance $expance)
     {
-        //
+        // return $expance;
+        $categories = Category::all();
+        return view('expenses.edit', compact('expance', 'categories'));
     }
 
-    public function update(Request $request, Expance $expance)
+    public function update(ExpenseUpdateRequest $request, Expance $expance)
     {
-        //
+        // return $request;
+        try {
+            $validate = $request->validated();
+            // return $validate;
+            DB::transaction(function () use ($validate, $expance) {
+                $expance->update([
+                    'category_id' => $validate['category_id'],
+                    'title' => $validate['title'],
+                    'amount' => $validate['amount'],
+                    'description' => $validate['description'],
+                ]);
+            });
+
+            return redirect()->route('expenses.index')->with('success', 'Expense Updated Successfully.');
+        } catch (Throwable $th) {
+            return redirect()->back()->with('error', 'Failed to update expense. Please try again.');
+        }
     }
 
     public function destroy(Expance $expance)

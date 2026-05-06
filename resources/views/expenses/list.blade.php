@@ -57,7 +57,7 @@
                                 {{ $data->created_at->format('d M Y') }}
                             </td>
                             <td class="px-6 py-4 flex gap-2">
-                                <a href="#"
+                                <a href="{{ route('expenses.edit', $data->id ) }}"
                                     class="font-medium bg-[#954C2E] rounded-xl px-2 py-1 flex justify-center items-center text-white">
                                     <span class="material-symbols-outlined text-lg">edit</span>
                                 </a>
