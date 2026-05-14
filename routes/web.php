@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::controller(ExpanceController::class)->group(function () {
         Route::get('/expenses', 'index')->name('expenses.index');
+        Route::post('/expenses/filter', 'IndexFilter')->name('expenses.index.filter');
         Route::get('/expenses/create', 'create')->name('expenses.create');
         Route::post('/expenses/store', 'store')->name('expenses.store');
         Route::get('/expenses/edit/{expance}', 'edit')->name('expenses.edit');

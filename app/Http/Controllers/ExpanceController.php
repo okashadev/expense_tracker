@@ -8,7 +8,7 @@ use App\Http\Requests\ExpensesCreateRequest;
 use App\Http\Requests\ExpenseUpdateRequest;
 use App\Models\Category;
 use App\Models\Expance;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -18,15 +18,24 @@ class ExpanceController extends Controller
     public function index() : View
     {
         $user_id = auth()->id();
-        $expenses = Expance::where('user_id', $user_id)->with('category')->get();
+        $expenses = Expance::where('user_id', $user_id)->with('category')->latest()
+        ->paginate(5);
         // return $expenses;
         return view('expenses.list', compact('expenses'));
     }
 
+    public function IndexFilter(){
 
-    public function create()
+    }
+
+
+    public function create(): View
     {
-        $categories = Category::all();
+        $categories = Category::where('is_system', true)
+                ->orWhere('user_id', auth()->id())
+                ->latest()
+                ->get();
+
         return view('expenses.add', compact('categories'));
     }
 
@@ -53,7 +62,7 @@ class ExpanceController extends Controller
         }
     }
 
-    public function edit(Expance $expance)
+    public function edit(Expance $expance) : View
     {
         // return $expance;
         $categories = Category::all();

@@ -37,9 +37,10 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $cat) {
             DB::table('categories')->insert([
-                'user_id' => null, 
+                'user_id' => null,
                 'name' => $cat['name'],
                 'icon' => $cat['icon'],
+                'is_system' => true,
                 'created_at' => $now,
                 'updated_at' => $now,
             ]);

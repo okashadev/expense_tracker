@@ -12,9 +12,41 @@
                 </button>
             </a>
         </div>
-        {{-- isko baad mn karunga  --}}
-        <div>
 
+
+        <div class="bg-white mb-8 flex flex-col md:flex-row items-center gap-5 justify-between p-6">
+            <div class="flex flex-col items-start gap-3 w-full">
+                <label for="start_date">Start Date</label>
+                <input type="date"
+                    id="start_date"
+                    name="start_date"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
+                    required>
+            </div>
+            <div class="flex flex-col items-start gap-3 w-full">
+                <label for="start_date">Start Date</label>
+                <input type="date"
+                    id="start_date"
+                    name="start_date"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
+                    required>
+            </div>
+            <div class="flex flex-col items-start gap-3 w-full">
+                <label for="start_date">Start Date</label>
+                <input type="date"
+                    id="start_date"
+                    name="start_date"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
+                    required>
+            </div>
+            <div class="flex flex-col items-start gap-3 w-full">
+                <label for="start_date">Start Date</label>
+                <input type="date"
+                    id="start_date"
+                    name="start_date"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
+                    required>
+            </div>
         </div>
 
 
@@ -24,6 +56,7 @@
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-[#131D4F] bg-gray-200">
                     <tr>
+                        <th class="px-6 py-3">#</th>
                         <th scope="col" class="px-6 py-3">
                             Title
                         </th>
@@ -42,8 +75,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($expenses as $data)
+                    @foreach ($expenses as $key => $data)
                         <tr class="bg-white border-b border-gray-200">
+                            <td class="px-6 py-4">
+                                {{ $expenses->firstItem() + $key }}
+                            </td>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $data->title }}
                             </th>
@@ -57,7 +93,7 @@
                                 {{ $data->created_at->format('d M Y') }}
                             </td>
                             <td class="px-6 py-4 flex gap-2">
-                                <a href="{{ route('expenses.edit', $data->id ) }}"
+                                <a href="{{ route('expenses.edit', $data->id) }}"
                                     class="font-medium bg-[#954C2E] rounded-xl px-2 py-1 flex justify-center items-center text-white">
                                     <span class="material-symbols-outlined text-lg">edit</span>
                                 </a>
@@ -110,6 +146,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-4 p-4 bg-transparent">
+            {{ $expenses->links() }}
+        </div>
         <div id="popup-modal" tabindex="-1"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
@@ -127,8 +166,8 @@
                     <div class="p-4 md:p-5 text-center">
                         <svg class="mx-auto mb-4 text-red-600 w-12 h-12" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <h3 class="mb-5 text-lg font-normal text-gray-500 ">Are you sure you want to
                             delete this product?</h3>

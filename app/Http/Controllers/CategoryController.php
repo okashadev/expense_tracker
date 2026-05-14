@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::whereNull('user_id')
+        $category = Category::where('is_system', true)
                 ->orWhere('user_id', auth()->id())
                 ->latest()
                 ->get();
@@ -43,6 +43,7 @@ class CategoryController extends Controller
                     'name' => $validate['name'],
                     'icon' => $validate['icon'],
                     'user_id' => auth()->id(),
+                    'is_system' => false,
                 ]);
             });
 
