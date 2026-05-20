@@ -14,40 +14,42 @@
         </div>
 
 
-        <div class="bg-white mb-8 flex flex-col md:flex-row items-center gap-5 justify-between p-6">
+        <form action="{{ route('expenses.index.filter') }}" method="POST"
+            class="bg-white mb-12 mt-4 flex flex-col md:flex-row items-center gap-5 justify-between p-6 shadow-lg rounded-lg">
+            @csrf
+            @method('POST')
             <div class="flex flex-col items-start gap-3 w-full">
-                <label for="start_date">Start Date</label>
-                <input type="date"
-                    id="start_date"
-                    name="start_date"
+                <label for="start_date" class="font-medium">Start Date</label>
+                <input type="date" id="start_date" name="start_date"
                     class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
                     required>
             </div>
             <div class="flex flex-col items-start gap-3 w-full">
-                <label for="start_date">Start Date</label>
-                <input type="date"
-                    id="start_date"
-                    name="start_date"
+                <label for="end_date" class="font-medium">End Date</label>
+                <input type="date" id="end_date" name="end_date"
                     class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
                     required>
             </div>
             <div class="flex flex-col items-start gap-3 w-full">
-                <label for="start_date">Start Date</label>
-                <input type="date"
-                    id="start_date"
-                    name="start_date"
-                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
-                    required>
+                <label for="category_id" class="font-medium">Select Category</label>
+                <select id="category" name="category_id"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5">
+                    <option selected disabled>Select category</option>
+                    <option value="">All Categories</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
-            <div class="flex flex-col items-start gap-3 w-full">
-                <label for="start_date">Start Date</label>
-                <input type="date"
-                    id="start_date"
-                    name="start_date"
-                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5"
-                    required>
+            <div class="max-md:w-full w-full">
+                <button type="submit"
+                    class="text-white mt-8 bg-[#954C2E] hover:bg-[#954C2E]/80 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                    Apply
+                </button>
             </div>
-        </div>
+        </form>
 
 
         {{-- yah table hy  --}}
@@ -80,10 +82,10 @@
                             <td class="px-6 py-4">
                                 {{ $expenses->firstItem() + $key }}
                             </td>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <th scope="row" class="px-6 py-4 font-medium capitalize text-gray-900 whitespace-nowrap">
                                 {{ $data->title }}
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 capitalize">
                                 {{ $data->category->name }}
                             </td>
                             <td class="px-6 py-4">
@@ -158,8 +160,8 @@
                         data-modal-hide="popup-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>

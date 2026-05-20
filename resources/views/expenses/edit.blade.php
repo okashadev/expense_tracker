@@ -27,8 +27,8 @@
                             class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#954C2E] focus:border-[#954C2E] block w-full p-2.5">
                             <option selected disabled>Select category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" selected
-                                    {{ $expance->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}
+                                <option value="{{ $category->id }}"
+                                    {{ $expance->category_id === $category->id ? 'selected' : '' }}>{{ $category->name }}
                                 </option>
                             @endforeach
                         </select>

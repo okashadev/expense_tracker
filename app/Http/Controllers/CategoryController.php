@@ -17,7 +17,7 @@ class CategoryController extends Controller
         $category = Category::where('is_system', true)
                 ->orWhere('user_id', auth()->id())
                 ->latest()
-                ->get();
+                ->paginate(8);
 
         return view('categories.list', compact('category'));
     }

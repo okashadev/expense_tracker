@@ -13,9 +13,6 @@
             </a>
         </div>
 
-
-        {{-- yah table hy  --}}
-
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-[#131D4F] bg-gray-200 uppercase">
@@ -43,7 +40,7 @@
                                 </div>
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <span class="text-md font-semibold">
+                                <span class="text-md capitalize font-semibold">
                                     {{ $data->name }}
                                 </span>
                             </td>
@@ -105,6 +102,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="mt-4 p-4 bg-transparent">
+            {{ $category->links() }}
         </div>
     </div>
 </x-app-layout>

@@ -8,7 +8,7 @@ use App\Http\Requests\ExpensesCreateRequest;
 use App\Http\Requests\ExpenseUpdateRequest;
 use App\Models\Category;
 use App\Models\Expance;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -19,13 +19,41 @@ class ExpanceController extends Controller
     {
         $user_id = auth()->id();
         $expenses = Expance::where('user_id', $user_id)->with('category')->latest()
-        ->paginate(5);
+        ->paginate(8);
         // return $expenses;
-        return view('expenses.list', compact('expenses'));
+
+        $categories = Category::all();
+
+        return view('expenses.list', compact('expenses', 'categories'));
     }
 
-    public function IndexFilter(){
+    public function IndexFilter(Request $request)
+    {
+        $validate = $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
 
+        $user_id = auth()->id();
+        $categories = Category::all();
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $category_id = $request->category_id;
+
+        $expenses = Expance::with('category')
+            ->where('user_id', $user_id)
+            ->when($category_id, function ($query) use ($category_id) {
+                $query->where('category_id', $category_id);
+            })
+            ->whereDate('created_at', '>=', $start_date)
+            ->whereDate('created_at', '<=', $end_date)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        // return $expenses;
+
+        return view('expenses.filter', compact('expenses', 'categories', 'start_date', 'end_date', 'category_id'));
     }
 
 
