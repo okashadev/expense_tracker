@@ -22,7 +22,7 @@
                 Monthly Limit
             </p>
             <p class="class=" text-gray-700"">
-                ${{ number_format($spent) }} of ${{ number_format($limit) }}
+                {{ currency_symbol() }}{{ number_format($spent) }} of {{ currency_symbol() }} {{ number_format($limit) }}
             </p>
         </div>
 

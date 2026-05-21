@@ -18,6 +18,8 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        // $user = auth()->user();
+        // return $user;
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
@@ -58,5 +60,30 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+
+   public function UpdateCurrency(Request $request)
+    {
+        // return $request;
+        try {
+            $validate = $request->validate([
+                'currency' => 'required',
+            ]);
+
+            auth()->user()->update([
+                'currency' => $validate['currency'],
+            ]);
+
+            return redirect()
+                ->back()
+                ->with('status', 'Currency-updated');
+
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Failed to update currency.');
+        }
     }
 }

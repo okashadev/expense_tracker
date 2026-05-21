@@ -89,7 +89,7 @@
                                 {{ $data->category->name }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $data->amount }}
+                                {{ currency_symbol() }} {{ $data->amount }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $data->created_at->format('d M Y') }}

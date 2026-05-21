@@ -7,7 +7,7 @@
                     Total Spent (This Month)
                 </p>
                 <p class="text-3xl font-bold">
-                    ${{ number_format($totalSpent, 2) }}
+                    {{ currency_symbol() }} {{ number_format($totalSpent, 2) }}
                 </p>
             </div>
             <div
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div>
-                            <h1 class="text-end font-semibold">-${{ $data->amount ?? '0.00' }}</h1>
+                            <h1 class="text-end font-semibold">-{{ currency_symbol() }} {{ $data->amount ?? '0.00' }}</h1>
                         </div>
                     </div>
                 @endforeach

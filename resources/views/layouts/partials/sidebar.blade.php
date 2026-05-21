@@ -44,9 +44,9 @@
                 <li>
                     <a href="{{ route('profile.edit') }}"
                         class="flex items-center p-2  rounded-lg group {{ request()->routeIs('profile.*') ? 'bg-white/20 text-white shadow-lg' : 'text-white hover:bg-white/10' }}">
-                        <span class="material-symbols-outlined">person</span>
+                        <span class="material-symbols-outlined">settings</span>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Settings</span>
                     </a>
                 </li>
                 <li>

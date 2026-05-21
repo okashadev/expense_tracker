@@ -44,7 +44,7 @@
 
                     <div>
                         <p class="text-gray-600">Total Spent</p>
-                        <h2 class="text-3xl font-bold text-[#131D4F]">{{ number_format($totalSpent) ?? 0 }}</h2>
+                        <h2 class="text-3xl font-bold text-[#131D4F]">{{ currency_symbol() }} {{ number_format($totalSpent) ?? 0 }}</h2>
                     </div>
 
                     <div>
@@ -75,7 +75,7 @@
                                 <tr class="border-b">
                                     <td class="py-3 px-4 text-center capitalize">{{ $data['category_name']['name'] }}
                                     </td>
-                                    <td class="py-3 px-4 text-center">{{ $data['amount'] }}</td>
+                                    <td class="py-3 px-4 text-center">{{ currency_symbol() }} {{ $data['amount'] }}</td>
                                     <td class="py-3 px-4 text-center">{{ $data['percent'] }}</td>
                                 </tr>
                             @endforeach
@@ -101,7 +101,7 @@
                                     <td class="py-3 px-4 text-center">{{ $data->created_at->format('M d, Y') }}</td>
                                     <td class="py-3 px-4 text-center capitalize">{{ $data->title }}</td>
                                     <td class="py-3 px-4 text-center capitalize">{{ $data->category->name }}</td>
-                                    <td class="py-3 px-4 text-center text-red-600">-{{ $data->amount }}</td>
+                                    <td class="py-3 px-4 text-center text-red-600">-{{ currency_symbol() }} {{ $data->amount }}</td>
                                 </tr>
                             @endforeach
 
