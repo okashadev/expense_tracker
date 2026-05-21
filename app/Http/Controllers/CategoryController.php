@@ -67,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -75,12 +75,36 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        try {
+            if ($category->is_system) {
+                return redirect()
+                    ->back()
+                    ->with('error', 'System categories cannot be updated.');
+            }
 
+            $validate = $request->validate([
+                'name' => 'required|string|max:255|unique:categories,name,' . $category->id . ',id,user_id,' . auth()->id(),
+                'icon' => 'required|string',
+            ]);
+
+            $category->update([
+                'name' => strtolower(trim($validate['name'])),
+                'icon' => $validate['icon'],
+            ]);
+
+            return redirect()
+                ->route('categories.index')
+                ->with('success', 'Category updated successfully.');
+                
+        } catch (\Throwable $th) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Failed to update category. Please try again.');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Category $category)
     {
        if (is_null($category->user_id)) {
